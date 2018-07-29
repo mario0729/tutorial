@@ -21,6 +21,15 @@ NEWSPIDER_MODULE = 'tutorial.spiders'
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = True
 
+ITEM_PIPELINES = {
+    #'tutorial.pipelines.TextPipeline': 300,
+    'tutorial.pipelines.MongoPipeline': 400,
+}
+
+MONGODB_HOST = '127.0.0.1'
+MONGODB_PORT = 27017
+MONGODB_DBNAME = 'tutorial'
+MONGODB_DOCNAME = 'QuoteItems'
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 #CONCURRENT_REQUESTS = 32
 
