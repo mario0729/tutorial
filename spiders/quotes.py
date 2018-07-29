@@ -1,9 +1,6 @@
 # -*- coding: utf-8 -*-
 import scrapy
-import re
 from tutorial.items import QuoteItem
-
-page = 2
 
 class QuotesSpider(scrapy.Spider):
     name = 'quotes'
@@ -21,12 +18,9 @@ class QuotesSpider(scrapy.Spider):
             print(item)
             yield item
             
-        next = '/page/'+str(page)+'/'
+        next = response.css('.pager .next a::attr(href)').extract_first() 
         print(next)
+        print(response.url)
         url = response.urljoin(next)
         print(url)
-        page = page + 1
-        return page
         yield scrapy.Request(url=url,callback=self.parse)
-
-page = 
